@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: admin
+    password: password
+
+blacklist:
+  enabled: true
+  names:
+    - pep
+    - pip
+    - pup
