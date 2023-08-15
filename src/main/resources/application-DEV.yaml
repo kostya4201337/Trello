@@ -1,12 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:5432/Trello
     username: admin
     password: password
-
-blacklist:
-  enabled: true
-  names:
-    - pep
-    - pip
-    - pup
