@@ -1,15 +1,15 @@
 package com.example.Trello.services;
 
-import com.example.Trello.model.entity.Board;
+import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.dto.board.BoardCreation;
 
 import java.util.List;
 
 public interface BoardService {
 
-    List<Board> getBoards();
+    List<BoardEntity> getBoards();
 
-    Board getBoardById(long id);
+    BoardEntity getBoardById(long id);
 
     void addBoard(BoardCreation boardCreation);
 

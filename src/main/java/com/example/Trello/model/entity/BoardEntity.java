@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "boards")
-public class Board {
+public class BoardEntity {
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private long id;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Card> cards = new ArrayList<>();
+    @OneToMany(mappedBy = "boardEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CardEntity> cardEntities = new ArrayList<>();
 
     private String name;
 
@@ -30,7 +30,7 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public Board(final long id, final String name, final String description, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
+    public BoardEntity(final long id, final String name, final String description, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,16 +38,16 @@ public class Board {
         this.updatedAt = updatedAt;
     }
 
-    public Board(final String name, final String description) {
+    public BoardEntity(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Board(final long id) {
+    public BoardEntity(final long id) {
         this.id = id;
     }
 
-    public Board() {
+    public BoardEntity() {
 
     }
 
@@ -60,8 +60,8 @@ public class Board {
     }
 
     @JsonIgnore
-    public List<Card> getCards() {
-        return cards;
+    public List<CardEntity> getCards() {
+        return cardEntities;
     }
 
     public String getName() {
@@ -80,8 +80,8 @@ public class Board {
         return updatedAt;
     }
 
-    public void setCards(final List<Card> cards) {
-        this.cards = cards;
+    public void setCards(final List<CardEntity> cardEntities) {
+        this.cardEntities = cardEntities;
     }
 
     public void setName(final String name) {

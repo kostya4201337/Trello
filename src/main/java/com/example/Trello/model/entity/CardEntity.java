@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity(name = "cards")
-public class Card {
+public class CardEntity {
 
     @Id
     @GeneratedValue
@@ -17,7 +17,7 @@ public class Card {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
-    private Board board;
+    private BoardEntity boardEntity;
 
     private String name;
 
@@ -29,21 +29,21 @@ public class Card {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public Card(final long id, final Board board, final String name, final String description, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
+    public CardEntity(final long id, final BoardEntity boardEntity, final String name, final String description, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
         this.id = id;
-        this.board = board;
+        this.boardEntity = boardEntity;
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public Card(final String name, final String description) {
+    public CardEntity(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Card(){
+    public CardEntity(){
 
     }
 
@@ -56,12 +56,12 @@ public class Card {
     }
 
     @JsonIgnore
-    public Board getBoard() {
-        return board;
+    public BoardEntity getBoard() {
+        return boardEntity;
     }
 
-    public void setBoard(final Board board) {
-        this.board = board;
+    public void setBoard(final BoardEntity boardEntity) {
+        this.boardEntity = boardEntity;
     }
 
     public String getName() {

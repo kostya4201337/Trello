@@ -1,6 +1,6 @@
 package com.example.Trello.controllers;
 
-import com.example.Trello.model.entity.Board;
+import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.services.BoardService;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +24,12 @@ public class BoardController {
     }
 
     @GetMapping
-    public List<Board> getBoards() {
+    public List<BoardEntity> getBoards() {
         return boardService.getBoards();
     }
 
     @GetMapping("{id}")
-    public Board getBoardById(@PathVariable final long id) {
+    public BoardEntity getBoardById(@PathVariable final long id) {
         return boardService.getBoardById(id);
     }
 

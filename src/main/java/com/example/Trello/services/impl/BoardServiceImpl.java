@@ -1,7 +1,7 @@
 package com.example.Trello.services.impl;
 
 import com.example.Trello.mappers.BoardMapper;
-import com.example.Trello.model.entity.Board;
+import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.repositories.BoardRepository;
 import com.example.Trello.services.BoardService;
@@ -27,13 +27,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> getBoards() {
+    public List<BoardEntity> getBoards() {
         return boardRepository.findAll();
     }
 
     @Override
-    public Board getBoardById(final long id) {
-        final Optional<Board> boardOptional = boardRepository.findById(id);
+    public BoardEntity getBoardById(final long id) {
+        final Optional<BoardEntity> boardOptional = boardRepository.findById(id);
         if (boardOptional.isEmpty()) {
             log.error(GET_BOARD_BY_ID_ERROR);
             throw new NoBoardFoundException(GET_BOARD_BY_ID_ERROR);
@@ -44,8 +44,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void addBoard(final BoardCreation boardCreation) {
-        final Board board = boardMapper.map(boardCreation);
-        boardRepository.save(board);
+        final BoardEntity boardEntity = boardMapper.map(boardCreation);
+        boardRepository.save(boardEntity);
     }
 
     @Override
@@ -54,21 +54,20 @@ public class BoardServiceImpl implements BoardService {
             log.error(GET_BOARD_BY_ID_ERROR);
             throw new NoBoardFoundException(GET_BOARD_BY_ID_ERROR);
         }
-
         boardRepository.deleteById(id);
     }
 
     @Override
     public void updateBoard(final long id, final BoardCreation boardCreation) {
-        final Optional<Board> boardOptional = boardRepository.findById(id);
+        final Optional<BoardEntity> boardOptional = boardRepository.findById(id);
         if (boardOptional.isEmpty()) {
             log.error(GET_BOARD_BY_ID_ERROR);
             throw new NoBoardFoundException(GET_BOARD_BY_ID_ERROR);
         }
 
-        final Board board = boardOptional.get();
-        board.setName(boardCreation.getName());
-        board.setDescription(boardCreation.getDescription());
-        boardRepository.save(board);
+        final BoardEntity boardEntity = boardOptional.get();
+        boardEntity.setName(boardCreation.getName());
+        boardEntity.setDescription(boardCreation.getDescription());
+        boardRepository.save(boardEntity);
     }
 }

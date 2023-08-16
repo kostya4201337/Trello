@@ -1,8 +1,8 @@
 package com.example.Trello.services.impl;
 
 import com.example.Trello.mappers.CardMapper;
-import com.example.Trello.model.entity.Board;
-import com.example.Trello.model.entity.Card;
+import com.example.Trello.model.entity.BoardEntity;
+import com.example.Trello.model.entity.CardEntity;
 import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.repositories.CardRepository;
 import com.example.Trello.services.BoardService;
@@ -34,23 +34,19 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void addCard(final long id, final CardCreation cardCreation) {
-        final Card card = cardMapper.map(cardCreation);
-
-        card.setBoard(new Board(id));
-        cardRepository.save(card);
+        final CardEntity cardEntity = cardMapper.map(cardCreation);
+        cardEntity.setBoard(new BoardEntity(id));
+        cardRepository.save(cardEntity);
     }
 
     @Override
-    public List<Card> getCards(final long id) {
-        return cardRepository.findAll()
-                .stream()
-                .filter(card -> card.getBoard().getId() == id)
-                .toList();
+    public List<CardEntity> getCards(final long id) {
+        return cardRepository.findCardEntitiesByBoardEntity(new BoardEntity(id));
     }
 
     @Override
-    public Card getCardById(final long id) {
-        final Optional<Card> cardOptional = cardRepository.findById(id);
+    public CardEntity getCardById(final long id) {
+        final Optional<CardEntity> cardOptional = cardRepository.findById(id);
         if (cardOptional.isEmpty()) {
             log.error(GET_CARD_BY_ID_ERROR);
             throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
@@ -71,16 +67,15 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void updateCard(final long id, final CardCreation cardCreation) {
-        final Optional<Card> cardOptional = cardRepository.findById(id);
+        final Optional<CardEntity> cardOptional = cardRepository.findById(id);
         if (cardOptional.isEmpty()) {
             log.error(GET_CARD_BY_ID_ERROR);
             throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
-        final Card card = cardOptional.get();
-        card.setName(cardCreation.getName());
-        card.setDescription(cardCreation.getDescription());
-
-        cardRepository.save(card);
+        final CardEntity cardEntity = cardOptional.get();
+        cardEntity.setName(cardCreation.getName());
+        cardEntity.setDescription(cardCreation.getDescription());
+        cardRepository.save(cardEntity);
     }
 }
