@@ -1,6 +1,7 @@
 package com.example.Trello.services.impl;
 
 import com.example.Trello.mappers.CardMapper;
+import com.example.Trello.model.entity.Board;
 import com.example.Trello.model.entity.Card;
 import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.repositories.CardRepository;
@@ -34,24 +35,28 @@ public class CardServiceImpl implements CardService {
     @Override
     public void addCard(final long id, final CardCreation cardCreation) {
         final Card card = cardMapper.map(cardCreation);
-        card.setBoard(boardService.getBoardById(id));
+
+        card.setBoard(new Board(id));
         cardRepository.save(card);
     }
 
     @Override
     public List<Card> getCards(final long id) {
-        return boardService.getBoardById(id).getCards();
+        return cardRepository.findAll()
+                .stream()
+                .filter(card -> card.getBoard().getId() == id)
+                .toList();
     }
 
     @Override
     public Card getCardById(final long id) {
-        final Optional<Card> optional = cardRepository.findById(id);
-        if (optional.isEmpty()) {
+        final Optional<Card> cardOptional = cardRepository.findById(id);
+        if (cardOptional.isEmpty()) {
             log.error(GET_CARD_BY_ID_ERROR);
             throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
-        return optional.get();
+        return cardOptional.get();
     }
 
     @Override
@@ -66,13 +71,13 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void updateCard(final long id, final CardCreation cardCreation) {
-        final Optional<Card> optional = cardRepository.findById(id);
-        if (optional.isEmpty()) {
+        final Optional<Card> cardOptional = cardRepository.findById(id);
+        if (cardOptional.isEmpty()) {
             log.error(GET_CARD_BY_ID_ERROR);
             throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
-        final Card card = optional.get();
+        final Card card = cardOptional.get();
         card.setName(cardCreation.getName());
         card.setDescription(cardCreation.getDescription());
 

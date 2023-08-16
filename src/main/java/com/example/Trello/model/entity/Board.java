@@ -43,10 +43,8 @@ public class Board {
         this.description = description;
     }
 
-    public Board(final long id, final String name, final String description) {
+    public Board(final long id) {
         this.id = id;
-        this.name = name;
-        this.description = description;
     }
 
     public Board() {

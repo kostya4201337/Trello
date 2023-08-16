@@ -33,13 +33,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board getBoardById(final long id) {
-        final Optional<Board> optional = boardRepository.findById(id);
-        if (optional.isEmpty()) {
+        final Optional<Board> boardOptional = boardRepository.findById(id);
+        if (boardOptional.isEmpty()) {
             log.error(GET_BOARD_BY_ID_ERROR);
             throw new NoBoardFoundException(GET_BOARD_BY_ID_ERROR);
         }
 
-        return optional.get();
+        return boardOptional.get();
     }
 
     @Override
@@ -60,13 +60,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void updateBoard(final long id, final BoardCreation boardCreation) {
-        final Optional<Board> optional = boardRepository.findById(id);
-        if (optional.isEmpty()) {
+        final Optional<Board> boardOptional = boardRepository.findById(id);
+        if (boardOptional.isEmpty()) {
             log.error(GET_BOARD_BY_ID_ERROR);
             throw new NoBoardFoundException(GET_BOARD_BY_ID_ERROR);
         }
 
-        final Board board = optional.get();
+        final Board board = boardOptional.get();
         board.setName(boardCreation.getName());
         board.setDescription(boardCreation.getDescription());
         boardRepository.save(board);
