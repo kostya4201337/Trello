@@ -1,6 +1,6 @@
 package com.example.Trello.services;
 
-import com.example.Trello.model.dto.card.Card;
+import com.example.Trello.model.entity.Card;
 import com.example.Trello.model.dto.card.CardCreation;
 
 import java.util.List;

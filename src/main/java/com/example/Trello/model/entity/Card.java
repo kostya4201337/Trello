@@ -1,16 +1,13 @@
-package com.example.Trello.model.dto.card;
+package com.example.Trello.model.entity;
 
-import com.example.Trello.model.dto.board.Board;
-import com.example.Trello.model.dto.board.BoardCreation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity(name="cards")
+@Entity(name = "cards")
 public class Card {
 
     @Id
@@ -32,7 +29,7 @@ public class Card {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public Card(long id, Board board, String name, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Card(final long id, final Board board, final String name, final String description, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
         this.id = id;
         this.board = board;
         this.name = name;
@@ -41,7 +38,7 @@ public class Card {
         this.updatedAt = updatedAt;
     }
 
-    public Card(String name, String description) {
+    public Card(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
@@ -63,7 +60,7 @@ public class Card {
         return board;
     }
 
-    public void setBoard(Board board) {
+    public void setBoard(final Board board) {
         this.board = board;
     }
 
@@ -71,7 +68,7 @@ public class Card {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -79,7 +76,7 @@ public class Card {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -87,7 +84,7 @@ public class Card {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(final LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -95,7 +92,7 @@ public class Card {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(final LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

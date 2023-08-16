@@ -1,6 +1,6 @@
 package com.example.Trello.mappers;
 
-import com.example.Trello.model.dto.board.Board;
+import com.example.Trello.model.entity.Board;
 import com.example.Trello.model.dto.board.BoardCreation;
 import org.springframework.stereotype.Component;
 

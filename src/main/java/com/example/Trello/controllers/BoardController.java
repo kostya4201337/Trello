@@ -1,10 +1,8 @@
 package com.example.Trello.controllers;
 
-import com.example.Trello.model.dto.board.Board;
+import com.example.Trello.model.entity.Board;
 import com.example.Trello.model.dto.board.BoardCreation;
-import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.services.BoardService;
-import com.example.Trello.services.CardService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +19,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    public BoardController(BoardService boardService) {
+    public BoardController(final BoardService boardService) {
         this.boardService = boardService;
     }
 
@@ -31,7 +29,7 @@ public class BoardController {
     }
 
     @GetMapping("{id}")
-    public Board getBoardById(@PathVariable long id) {
+    public Board getBoardById(@PathVariable final long id) {
         return boardService.getBoardById(id);
     }
 
@@ -42,13 +40,13 @@ public class BoardController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteBoard(@PathVariable long id) {
+    public String deleteBoard(@PathVariable final long id) {
         boardService.deleteBoard(id);
         return BOARD_DELETED_MSG;
     }
 
     @PutMapping("{id}")
-    public String updateBoard(@PathVariable long id, @RequestBody BoardCreation boardCreation) {
+    public String updateBoard(@PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
         boardService.updateBoard(id, boardCreation);
         return BOARD_UPDATED_MSG;
     }

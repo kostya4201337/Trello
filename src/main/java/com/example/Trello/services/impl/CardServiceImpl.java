@@ -1,13 +1,12 @@
 package com.example.Trello.services.impl;
 
 import com.example.Trello.mappers.CardMapper;
-import com.example.Trello.model.dto.board.Board;
-import com.example.Trello.model.dto.card.Card;
+import com.example.Trello.model.entity.Card;
 import com.example.Trello.model.dto.card.CardCreation;
-import com.example.Trello.repositories.BoardRepository;
 import com.example.Trello.repositories.CardRepository;
 import com.example.Trello.services.BoardService;
 import com.example.Trello.services.CardService;
+import com.example.Trello.services.exception.NoCardFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +17,15 @@ import java.util.Optional;
 @Slf4j
 public class CardServiceImpl implements CardService {
 
+    private static final String GET_CARD_BY_ID_ERROR = "Card with given id doesn't exist";
+
     private final CardMapper cardMapper;
 
     private final CardRepository cardRepository;
 
     private final BoardService boardService;
 
-    public CardServiceImpl(CardMapper cardMapper, CardRepository cardRepository, BoardService boardService) {
+    public CardServiceImpl(final CardMapper cardMapper, final CardRepository cardRepository, final BoardService boardService) {
         this.cardMapper = cardMapper;
         this.cardRepository = cardRepository;
         this.boardService = boardService;
@@ -32,7 +33,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void addCard(final long id, final CardCreation cardCreation) {
-        Card card = cardMapper.map(cardCreation);
+        final Card card = cardMapper.map(cardCreation);
         card.setBoard(boardService.getBoardById(id));
         cardRepository.save(card);
     }
@@ -44,10 +45,10 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card getCardById(final long id) {
-        Optional<Card> optional = cardRepository.findById(id);
-
+        final Optional<Card> optional = cardRepository.findById(id);
         if (optional.isEmpty()) {
-            throw new RuntimeException();
+            log.error(GET_CARD_BY_ID_ERROR);
+            throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
         return optional.get();
@@ -56,7 +57,8 @@ public class CardServiceImpl implements CardService {
     @Override
     public void deleteCard(final long id) {
         if (!cardRepository.existsById(id)) {
-            throw new RuntimeException();
+            log.error(GET_CARD_BY_ID_ERROR);
+            throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
         cardRepository.deleteById(id);
@@ -64,13 +66,13 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void updateCard(final long id, final CardCreation cardCreation) {
-        Optional<Card> optional = cardRepository.findById(id);
-
-        if(optional.isEmpty()) {
-            throw new RuntimeException();
+        final Optional<Card> optional = cardRepository.findById(id);
+        if (optional.isEmpty()) {
+            log.error(GET_CARD_BY_ID_ERROR);
+            throw new NoCardFoundException(GET_CARD_BY_ID_ERROR);
         }
 
-        Card card = optional.get();
+        final Card card = optional.get();
         card.setName(cardCreation.getName());
         card.setDescription(cardCreation.getDescription());
 

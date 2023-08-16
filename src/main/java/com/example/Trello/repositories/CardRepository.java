@@ -1,6 +1,6 @@
 package com.example.Trello.repositories;
 
-import com.example.Trello.model.dto.card.Card;
+import com.example.Trello.model.entity.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
