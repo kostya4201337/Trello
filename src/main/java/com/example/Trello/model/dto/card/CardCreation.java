@@ -10,6 +10,11 @@ public class CardCreation {
     @NotBlank(message = "Description is mandatory")
     private String description;
 
+    public CardCreation(final String name, final String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
