@@ -7,6 +7,7 @@ import com.example.Trello.repositories.BoardRepository;
 import com.example.Trello.services.BoardService;
 import com.example.Trello.services.exception.NoBoardFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.Flyway;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +22,12 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper boardMapper;
 
-    public BoardServiceImpl(final BoardRepository boardRepository, final BoardMapper boardMapper) {
+    private final Flyway flyway;
+
+    public BoardServiceImpl(final BoardRepository boardRepository, final BoardMapper boardMapper, final Flyway flyway) {
         this.boardRepository = boardRepository;
         this.boardMapper = boardMapper;
+        this.flyway = flyway;
     }
 
     @Override

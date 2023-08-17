@@ -24,24 +24,21 @@ public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
 
-    private final BoardService boardService;
-
-    public CardServiceImpl(final CardMapper cardMapper, final CardRepository cardRepository, final BoardService boardService) {
+    public CardServiceImpl(final CardMapper cardMapper, final CardRepository cardRepository) {
         this.cardMapper = cardMapper;
         this.cardRepository = cardRepository;
-        this.boardService = boardService;
     }
 
     @Override
-    public void addCard(final long id, final CardCreation cardCreation) {
+    public void addCard(final long boardId, final CardCreation cardCreation) {
         final CardEntity cardEntity = cardMapper.map(cardCreation);
-        cardEntity.setBoard(new BoardEntity(id));
+        cardEntity.setBoardId(boardId);
         cardRepository.save(cardEntity);
     }
 
     @Override
     public List<CardEntity> getCards(final long id) {
-        return cardRepository.findCardEntitiesByBoardEntityOrderByCreatedAtDesc(new BoardEntity(id));
+        return cardRepository.findCardEntitiesByBoardIdOrderByCreatedAtDesc(id);
     }
 
     @Override

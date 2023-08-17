@@ -1,7 +1,13 @@
 package com.example.Trello.model.dto.board;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class BoardCreation {
 
     @NotBlank(message = "Name is mandatory")
@@ -9,26 +15,4 @@ public class BoardCreation {
 
     @NotBlank(message = "Description is mandatory")
     private String description;
-
-    public BoardCreation(final String name, final String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
 }

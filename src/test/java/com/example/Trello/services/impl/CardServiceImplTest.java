@@ -1,14 +1,10 @@
 package com.example.Trello.services.impl;
 
-import com.example.Trello.mappers.BoardMapper;
 import com.example.Trello.mappers.CardMapper;
-import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.entity.CardEntity;
-import com.example.Trello.repositories.BoardRepository;
 import com.example.Trello.repositories.CardRepository;
-import com.example.Trello.services.exception.NoBoardFoundException;
 import com.example.Trello.services.exception.NoCardFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +17,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
@@ -45,7 +40,7 @@ class CardServiceImplTest {
     @Test
     void should_getCardsOrderedByName() {
         //given
-        given(cardRepository.findCardEntitiesByBoardEntityOrderByCreatedAtDesc(new BoardEntity(1)))
+        given(cardRepository.findCardEntitiesByBoardIdOrderByCreatedAtDesc(1))
                 .willReturn(List.of(CARD_ENTITY));
 
         //when
@@ -92,7 +87,7 @@ class CardServiceImplTest {
 
         //then
         CardEntity expectedCardEntity = new CardEntity("a", "b");
-        expectedCardEntity.setBoard(new BoardEntity(1));
+        expectedCardEntity.setBoardId(1);
         then(cardRepository).should().save(expectedCardEntity);
     }
 
