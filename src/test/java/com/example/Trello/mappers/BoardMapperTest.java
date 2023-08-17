@@ -25,7 +25,6 @@ class BoardMapperTest {
 
         //then
         BoardEntity expectedBoardEntity = new BoardEntity("a", "b");
-
         assertThat(boardEntity).isEqualTo(expectedBoardEntity);
     }
 }

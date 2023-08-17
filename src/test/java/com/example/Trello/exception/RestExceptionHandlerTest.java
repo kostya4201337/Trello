@@ -25,6 +25,5 @@ class RestExceptionHandlerTest {
 
         //then
         assertThat(apiError.getMessage()).isEqualTo(expectedMessage);
-
     }
 }

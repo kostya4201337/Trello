@@ -93,7 +93,6 @@ class CardServiceImplTest {
         //then
         CardEntity expectedCardEntity = new CardEntity("a", "b");
         expectedCardEntity.setBoard(new BoardEntity(1));
-
         then(cardRepository).should().save(expectedCardEntity);
     }
 
