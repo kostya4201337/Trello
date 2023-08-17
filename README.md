@@ -6,7 +6,7 @@ A tool that organizes your projects into boards.
 
 [Database] PostgreSQL
 
-[Deployment] Docker
+[Deployment] Docker, Maven
 
 ### Goals
 - System can have different boards

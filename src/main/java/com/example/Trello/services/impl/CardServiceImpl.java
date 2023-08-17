@@ -41,7 +41,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public List<CardEntity> getCards(final long id) {
-        return cardRepository.findCardEntitiesByBoardEntity(new BoardEntity(id));
+        return cardRepository.findCardEntitiesByBoardEntityOrderByCreatedAtDesc(new BoardEntity(id));
     }
 
     @Override
