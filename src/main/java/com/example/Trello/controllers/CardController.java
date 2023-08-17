@@ -3,6 +3,7 @@ package com.example.Trello.controllers;
 import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.model.entity.CardEntity;
 import com.example.Trello.services.CardService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class CardController {
     }
 
     @PostMapping
-    public String addCard(@PathVariable final long board_id, @RequestBody final CardCreation cardCreation){
+    public String addCard(@Valid @PathVariable final long board_id, @RequestBody final CardCreation cardCreation){
         cardService.addCard(board_id, cardCreation);
         return CARD_ADDED_MSG;
     }
@@ -46,7 +47,7 @@ public class CardController {
     }
 
     @PutMapping("{id}")
-    public String updateCard(@PathVariable final long id, @RequestBody final CardCreation cardCreation) {
+    public String updateCard(@Valid @PathVariable final long id, @RequestBody final CardCreation cardCreation) {
         cardService.updateCard(id, cardCreation);
         return CARD_UPDATED_MSG;
     }

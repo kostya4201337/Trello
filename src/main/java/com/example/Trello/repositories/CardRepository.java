@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CardRepository extends JpaRepository<CardEntity, Long> {
-    List<CardEntity> findCardEntitiesByBoardEntity(BoardEntity boardEntity);
+    List<CardEntity> findCardEntitiesByBoardEntityOrderByCreatedAtAsc(BoardEntity boardEntity);
 }

@@ -1,9 +1,13 @@
 package com.example.Trello.model.dto.board;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class BoardCreation {
 
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
+    @NotBlank(message = "Description is mandatory")
     private String description;
 
     public String getName() {
