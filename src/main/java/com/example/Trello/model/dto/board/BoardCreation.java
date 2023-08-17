@@ -10,6 +10,11 @@ public class BoardCreation {
     @NotBlank(message = "Description is mandatory")
     private String description;
 
+    public BoardCreation(final String name, final String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
