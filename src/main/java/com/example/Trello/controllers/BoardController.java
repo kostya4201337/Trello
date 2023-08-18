@@ -4,12 +4,14 @@ import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.services.BoardService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/boards")
+@RequiredArgsConstructor
 public class BoardController {
 
     private static final String BOARD_ADDED_MSG = "Board has been added";
@@ -19,10 +21,6 @@ public class BoardController {
     private static final String BOARD_DELETED_MSG  = "Board has been deleted";
 
     private final BoardService boardService;
-
-    public BoardController(final BoardService boardService) {
-        this.boardService = boardService;
-    }
 
     @GetMapping
     public List<BoardEntity> getBoards() {

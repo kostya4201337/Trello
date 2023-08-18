@@ -4,12 +4,14 @@ import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.model.entity.CardEntity;
 import com.example.Trello.services.CardService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/boards/{board_id}/cards")
+@RequiredArgsConstructor
 public class CardController {
 
     private static final String CARD_ADDED_MSG = "Card has been added";
@@ -19,10 +21,6 @@ public class CardController {
     private static final String CARD_DELETED_MSG  = "Card has been deleted";
 
     private final CardService cardService;
-
-    public CardController(final CardService cardService) {
-        this.cardService = cardService;
-    }
 
     @PostMapping
     public String addCard(@Valid @PathVariable final long board_id, @RequestBody final CardCreation cardCreation){

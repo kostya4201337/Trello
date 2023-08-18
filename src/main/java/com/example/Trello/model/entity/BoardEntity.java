@@ -12,11 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "boards")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class BoardEntity {
 
     @Id

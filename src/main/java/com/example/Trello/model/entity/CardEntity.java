@@ -10,11 +10,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity(name = "cards")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
-@EqualsAndHashCode
 public class CardEntity {
 
     @Id
