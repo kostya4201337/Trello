@@ -8,6 +8,7 @@ import com.example.Trello.repositories.CardRepository;
 import com.example.Trello.services.BoardService;
 import com.example.Trello.services.CardService;
 import com.example.Trello.services.exception.NoCardFoundException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
 
     private static final String GET_CARD_BY_ID_ERROR = "Card with given id doesn't exist";
@@ -24,24 +26,16 @@ public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
 
-    private final BoardService boardService;
-
-    public CardServiceImpl(final CardMapper cardMapper, final CardRepository cardRepository, final BoardService boardService) {
-        this.cardMapper = cardMapper;
-        this.cardRepository = cardRepository;
-        this.boardService = boardService;
-    }
-
     @Override
-    public void addCard(final long id, final CardCreation cardCreation) {
+    public void addCard(final long boardId, final CardCreation cardCreation) {
         final CardEntity cardEntity = cardMapper.map(cardCreation);
-        cardEntity.setBoard(new BoardEntity(id));
+        cardEntity.setBoardId(boardId);
         cardRepository.save(cardEntity);
     }
 
     @Override
     public List<CardEntity> getCards(final long id) {
-        return cardRepository.findCardEntitiesByBoardEntityOrderByCreatedAtDesc(new BoardEntity(id));
+        return cardRepository.findCardEntitiesByBoardIdOrderByCreatedAtDesc(id);
     }
 
     @Override

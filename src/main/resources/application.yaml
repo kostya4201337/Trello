@@ -5,5 +5,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        default_schema: kostya
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+  flyway:
+    baseline-on-migrate: true
+    default-schema: kostya

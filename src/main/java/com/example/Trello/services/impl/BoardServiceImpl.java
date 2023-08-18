@@ -6,13 +6,16 @@ import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.repositories.BoardRepository;
 import com.example.Trello.services.BoardService;
 import com.example.Trello.services.exception.NoBoardFoundException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.Flyway;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private static final String GET_BOARD_BY_ID_ERROR = "Board with given id doesn't exist";
@@ -20,11 +23,6 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
 
     private final BoardMapper boardMapper;
-
-    public BoardServiceImpl(final BoardRepository boardRepository, final BoardMapper boardMapper) {
-        this.boardRepository = boardRepository;
-        this.boardMapper = boardMapper;
-    }
 
     @Override
     public List<BoardEntity> getBoards() {
