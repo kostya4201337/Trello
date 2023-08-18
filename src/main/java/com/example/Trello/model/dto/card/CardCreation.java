@@ -7,11 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+@AllArgsConstructor
 public class CardCreation {
 
     @NotBlank(message = "Name is mandatory")
-    private final String name;
+    private String name;
 
     @NotBlank(message = "Description is mandatory")
-    private final String description;
+    private String description;
 }
