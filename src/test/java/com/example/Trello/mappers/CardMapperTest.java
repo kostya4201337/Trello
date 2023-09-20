@@ -28,7 +28,7 @@ class CardMapperTest {
         CardEntity cardEntity = cardMapper.map(cardCreation);
 
         //then
-        CardEntity expectedCardEntity = new CardEntity("a", "b");
+        CardEntity expectedCardEntity = CardEntity.builder().name("a").description("b").build();
         assertThat(cardEntity).isEqualTo(expectedCardEntity);
     }
 }

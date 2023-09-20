@@ -64,8 +64,8 @@ public class BoardServiceImpl implements BoardService {
         }
 
         final BoardEntity boardEntity = boardOptional.get();
-        boardEntity.setName(boardCreation.getName());
-        boardEntity.setDescription(boardCreation.getDescription());
+        boardEntity.setName(boardCreation.name());
+        boardEntity.setDescription(boardCreation.description());
         boardRepository.save(boardEntity);
     }
 }

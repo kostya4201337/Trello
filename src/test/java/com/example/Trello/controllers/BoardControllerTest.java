@@ -3,7 +3,6 @@ package com.example.Trello.controllers;
 import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.services.BoardService;
-import com.example.Trello.services.impl.BoardServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 
@@ -26,7 +24,7 @@ class BoardControllerTest {
     @Mock
     private BoardService boardService;
 
-    private final BoardEntity BOARD_ENTITY = new BoardEntity("a", "b");
+    private final BoardEntity BOARD_ENTITY = BoardEntity.builder().name("a").description("b").build();
 
     private final BoardCreation BOARD_CREATION = new BoardCreation("a", "b");
 

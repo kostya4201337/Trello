@@ -2,17 +2,8 @@ package com.example.Trello.model.dto.card;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
 
-@Data
-@AllArgsConstructor
-public class CardCreation {
+public record CardCreation(@NotBlank(message = "Name is mandatory") String name, @NotBlank(message = "Name is mandatory") String description) {
 
-    @NotBlank(message = "Name is mandatory")
-    private String name;
-
-    @NotBlank(message = "Description is mandatory")
-    private String description;
 }

@@ -1,6 +1,7 @@
 package com.example.Trello.services.impl;
 
 import com.example.Trello.mappers.CardMapper;
+import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.model.dto.card.CardCreation;
 import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.entity.CardEntity;
@@ -31,7 +32,7 @@ class CardServiceImplTest {
     @Mock
     private CardMapper cardMapper;
 
-    private final CardEntity CARD_ENTITY = new CardEntity("a", "b");
+    private final CardEntity CARD_ENTITY = CardEntity.builder().name("a").description("b").build();
 
     private final CardCreation CARD_CREATION = new CardCreation("a", "b");
 
@@ -86,7 +87,7 @@ class CardServiceImplTest {
         cardService.addCard(1, CARD_CREATION);
 
         //then
-        CardEntity expectedCardEntity = new CardEntity("a", "b");
+        CardEntity expectedCardEntity = CardEntity.builder().name("a").description("b").build();;
         expectedCardEntity.setBoardId(1);
         then(cardRepository).should().save(expectedCardEntity);
     }

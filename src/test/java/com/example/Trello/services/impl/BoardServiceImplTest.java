@@ -31,7 +31,7 @@ class BoardServiceImplTest {
     @Mock
     private BoardMapper boardMapper;
 
-    private final BoardEntity BOARD_ENTITY = new BoardEntity("a", "b");
+    private final BoardEntity BOARD_ENTITY = BoardEntity.builder().name("a").description("b").build();
 
     private final BoardCreation BOARD_CREATION = new BoardCreation("a", "b");
 

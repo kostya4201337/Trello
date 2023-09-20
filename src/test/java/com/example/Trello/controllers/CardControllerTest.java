@@ -28,7 +28,7 @@ class CardControllerTest {
     @Mock
     private CardService cardService;
 
-    private final CardEntity CARD_ENTITY = new CardEntity("a", "b");
+    private final CardEntity CARD_ENTITY = CardEntity.builder().name("a").description("b").build();
 
     private final CardCreation CARD_CREATION = new CardCreation("a", "b");
 

@@ -68,8 +68,8 @@ public class CardServiceImpl implements CardService {
         }
 
         final CardEntity cardEntity = cardOptional.get();
-        cardEntity.setName(cardCreation.getName());
-        cardEntity.setDescription(cardCreation.getDescription());
+        cardEntity.setName(cardCreation.name());
+        cardEntity.setDescription(cardCreation.description());
         cardRepository.save(cardEntity);
     }
 }
