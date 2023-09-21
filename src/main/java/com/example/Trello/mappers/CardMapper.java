@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CardMapper {
     public CardEntity map(final CardCreation cardCreation) {
-        return new CardEntity(cardCreation.getName(), cardCreation.getDescription());
+        return CardEntity
+                .builder()
+                .name(cardCreation.name())
+                .description(cardCreation.description())
+                .build();
     }
 }

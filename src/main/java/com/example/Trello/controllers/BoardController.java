@@ -14,12 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
-    private static final String BOARD_ADDED_MSG = "Board has been added";
-
-    private static final String BOARD_UPDATED_MSG = "Board has been updated";
-
-    private static final String BOARD_DELETED_MSG  = "Board has been deleted";
-
     private final BoardService boardService;
 
     @GetMapping
@@ -33,20 +27,17 @@ public class BoardController {
     }
 
     @PostMapping
-    public String addBoard(@Valid @RequestBody final BoardCreation boardCreation) {
-        boardService.addBoard(boardCreation);
-        return BOARD_ADDED_MSG;
+    public BoardEntity addBoard(@Valid @RequestBody final BoardCreation boardCreation) {
+        return boardService.addBoard(boardCreation);
     }
 
     @DeleteMapping("{id}")
-    public String deleteBoard(@PathVariable final long id) {
+    public void deleteBoard(@PathVariable final long id) {
         boardService.deleteBoard(id);
-        return BOARD_DELETED_MSG;
     }
 
     @PutMapping("{id}")
-    public String updateBoard(@Valid @PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
-        boardService.updateBoard(id, boardCreation);
-        return BOARD_UPDATED_MSG;
+    public BoardEntity updateBoard(@Valid @PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
+        return boardService.updateBoard(id, boardCreation);
     }
 }

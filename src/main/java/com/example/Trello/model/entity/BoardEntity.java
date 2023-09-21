@@ -15,11 +15,11 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class BoardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private long id;
 
     private String name;
@@ -31,13 +31,4 @@ public class BoardEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    public BoardEntity(final String name, final String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public BoardEntity(final long id) {
-        this.id = id;
-    }
 }

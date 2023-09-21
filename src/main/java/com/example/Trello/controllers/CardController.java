@@ -14,18 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CardController {
 
-    private static final String CARD_ADDED_MSG = "Card has been added";
-
-    private static final String CARD_UPDATED_MSG = "Card has been updated";
-
-    private static final String CARD_DELETED_MSG  = "Card has been deleted";
-
     private final CardService cardService;
 
     @PostMapping
-    public String addCard(@Valid @PathVariable final long board_id, @RequestBody final CardCreation cardCreation){
-        cardService.addCard(board_id, cardCreation);
-        return CARD_ADDED_MSG;
+    public CardEntity addCard(@Valid @PathVariable final long board_id, @RequestBody final CardCreation cardCreation){
+        return cardService.addCard(board_id, cardCreation);
     }
 
     @GetMapping
@@ -39,14 +32,12 @@ public class CardController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteCard(@PathVariable final long id) {
+    public void deleteCard(@PathVariable final long id) {
         cardService.deleteCard(id);
-        return CARD_DELETED_MSG;
     }
 
     @PutMapping("{id}")
-    public String updateCard(@Valid @PathVariable final long id, @RequestBody final CardCreation cardCreation) {
-        cardService.updateCard(id, cardCreation);
-        return CARD_UPDATED_MSG;
+    public CardEntity updateCard(@Valid @PathVariable final long id, @RequestBody final CardCreation cardCreation) {
+        return cardService.updateCard(id, cardCreation);
     }
 }

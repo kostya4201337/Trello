@@ -11,9 +11,9 @@ public interface BoardService {
 
     BoardEntity getBoardById(long id);
 
-    void addBoard(BoardCreation boardCreation);
+    BoardEntity addBoard(BoardCreation boardCreation);
 
     void deleteBoard(long id);
 
-    void updateBoard(long id, BoardCreation boardCreation);
+    BoardEntity updateBoard(long id, BoardCreation boardCreation);
 }

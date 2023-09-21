@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Trello
+    url: jdbc:postgresql://localhost:5432/trello
     username: admin
     password: password

@@ -16,8 +16,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CardControllerTest {
@@ -28,7 +27,7 @@ class CardControllerTest {
     @Mock
     private CardService cardService;
 
-    private final CardEntity CARD_ENTITY = new CardEntity("a", "b");
+    private final CardEntity CARD_ENTITY = CardEntity.builder().name("a").description("b").build();
 
     private final CardCreation CARD_CREATION = new CardCreation("a", "b");
 
@@ -59,41 +58,35 @@ class CardControllerTest {
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_cardAdded() {
+    void should_returnCard_when_cardAdded() {
         //given
-        willDoNothing().given(cardService).addCard(1, CARD_CREATION);
+        given(cardService.addCard(1, CARD_CREATION)).willReturn(CARD_ENTITY);
 
         //when
-        String message = cardController.addCard(1, CARD_CREATION);
+        CardEntity cardEntity = cardController.addCard(1, CARD_CREATION);
 
         //then
-        String expectedMessage = "Card has been added";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(cardEntity).isEqualTo(CARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_cardUpdated() {
+    void should_returnCard_when_cardUpdated() {
         //given
-        willDoNothing().given(cardService).updateCard(1, CARD_CREATION);
+        given(cardService.updateCard(1, CARD_CREATION)).willReturn(CARD_ENTITY);
 
         //when
-        String message = cardController.updateCard(1, CARD_CREATION);
+        CardEntity cardEntity = cardController.updateCard(1, CARD_CREATION);
 
         //then
-        String expectedMessage = "Card has been updated";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(cardEntity).isEqualTo(CARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_cardDeleted() {
-        //given
-        willDoNothing().given(cardService).deleteCard(1);
-
+    void should_successfullyExecuteDeleteCard() {
         //when
-        String message = cardController.deleteCard(1);
+        cardController.deleteCard(1);
 
         //then
-        String expectedMessage = "Card has been deleted";
-        assertThat(message).isEqualTo(expectedMessage);
+        then(cardService).should().deleteCard(1);
     }
 }

@@ -3,7 +3,6 @@ package com.example.Trello.controllers;
 import com.example.Trello.model.dto.board.BoardCreation;
 import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.services.BoardService;
-import com.example.Trello.services.impl.BoardServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,9 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BoardControllerTest {
@@ -26,7 +24,7 @@ class BoardControllerTest {
     @Mock
     private BoardService boardService;
 
-    private final BoardEntity BOARD_ENTITY = new BoardEntity("a", "b");
+    private final BoardEntity BOARD_ENTITY = BoardEntity.builder().name("a").description("b").build();
 
     private final BoardCreation BOARD_CREATION = new BoardCreation("a", "b");
 
@@ -57,41 +55,35 @@ class BoardControllerTest {
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_boardAdded() {
+    void should_returnBoard_when_boardAdded() {
         //given
-        willDoNothing().given(boardService).addBoard(BOARD_CREATION);
+        given(boardService.addBoard(BOARD_CREATION)).willReturn(BOARD_ENTITY);
 
         //when
-        String message = boardController.addBoard(BOARD_CREATION);
+        BoardEntity boardEntity = boardController.addBoard(BOARD_CREATION);
 
         //then
-        String expectedMessage = "Board has been added";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_boardUpdated() {
+    void should_returnBoard_when_boardUpdated() {
         //given
-        willDoNothing().given(boardService).updateBoard(1, BOARD_CREATION);
+        given(boardService.updateBoard(1, BOARD_CREATION)).willReturn(BOARD_ENTITY);
 
         //when
-        String message = boardController.updateBoard(1, BOARD_CREATION);
+        BoardEntity boardEntity = boardController.updateBoard(1, BOARD_CREATION);
 
         //then
-        String expectedMessage = "Board has been updated";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_boardDeleted() {
-        //given
-        willDoNothing().given(boardService).deleteBoard(1);
-
+    void should_successfullyExecuteDeleteBoard() {
         //when
-        String message = boardController.deleteBoard(1);
+        boardController.deleteBoard(1);
 
         //then
-        String expectedMessage = "Board has been deleted";
-        assertThat(message).isEqualTo(expectedMessage);
+        then(boardService).should().deleteBoard(1);
     }
 }

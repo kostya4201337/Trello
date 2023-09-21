@@ -27,10 +27,11 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
 
     @Override
-    public void addCard(final long boardId, final CardCreation cardCreation) {
+    public CardEntity addCard(final long boardId, final CardCreation cardCreation) {
         final CardEntity cardEntity = cardMapper.map(cardCreation);
         cardEntity.setBoardId(boardId);
         cardRepository.save(cardEntity);
+        return cardEntity;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void updateCard(final long id, final CardCreation cardCreation) {
+    public CardEntity updateCard(final long id, final CardCreation cardCreation) {
         final Optional<CardEntity> cardOptional = cardRepository.findById(id);
         if (cardOptional.isEmpty()) {
             log.error(GET_CARD_BY_ID_ERROR);
@@ -68,8 +69,9 @@ public class CardServiceImpl implements CardService {
         }
 
         final CardEntity cardEntity = cardOptional.get();
-        cardEntity.setName(cardCreation.getName());
-        cardEntity.setDescription(cardCreation.getDescription());
+        cardEntity.setName(cardCreation.name());
+        cardEntity.setDescription(cardCreation.description());
         cardRepository.save(cardEntity);
+        return cardEntity;
     }
 }

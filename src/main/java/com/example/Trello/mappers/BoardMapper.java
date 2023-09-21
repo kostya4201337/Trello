@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BoardMapper {
     public BoardEntity map(final BoardCreation boardCreation) {
-        return new BoardEntity(boardCreation.getName(), boardCreation.getDescription());
+        return BoardEntity
+                .builder()
+                .name(boardCreation.name())
+                .description(boardCreation.description())
+                .build();
     }
 }
