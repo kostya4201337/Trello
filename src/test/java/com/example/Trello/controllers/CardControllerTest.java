@@ -59,29 +59,27 @@ class CardControllerTest {
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_cardAdded() {
+    void should_returnCard_when_cardAdded() {
         //given
-        willDoNothing().given(cardService).addCard(1, CARD_CREATION);
+        given(cardService.addCard(1, CARD_CREATION)).willReturn(CARD_ENTITY);
 
         //when
-        String message = cardController.addCard(1, CARD_CREATION);
+        CardEntity cardEntity = cardController.addCard(1, CARD_CREATION);
 
         //then
-        String expectedMessage = "Card has been added";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(cardEntity).isEqualTo(CARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_cardUpdated() {
+    void should_returnCard_when_cardUpdated() {
         //given
-        willDoNothing().given(cardService).updateCard(1, CARD_CREATION);
+        given(cardService.updateCard(1, CARD_CREATION)).willReturn(CARD_ENTITY);
 
         //when
-        String message = cardController.updateCard(1, CARD_CREATION);
+        CardEntity cardEntity = cardController.updateCard(1, CARD_CREATION);
 
         //then
-        String expectedMessage = "Card has been updated";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(cardEntity).isEqualTo(CARD_ENTITY);
     }
 
     @Test

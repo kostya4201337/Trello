@@ -1,12 +1,13 @@
 package com.example.Trello.services;
 
+import com.example.Trello.model.entity.BoardEntity;
 import com.example.Trello.model.entity.CardEntity;
 import com.example.Trello.model.dto.card.CardCreation;
 
 import java.util.List;
 
 public interface CardService {
-    void addCard(long id, CardCreation cardCreation);
+    CardEntity addCard(long id, CardCreation cardCreation);
 
     List<CardEntity> getCards(long id);
 
@@ -14,5 +15,5 @@ public interface CardService {
 
     void deleteCard(long id);
 
-    void updateCard(long id, CardCreation cardCreation);
+    CardEntity updateCard(long id, CardCreation cardCreation);
 }

@@ -41,9 +41,10 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void addBoard(final BoardCreation boardCreation) {
+    public BoardEntity addBoard(final BoardCreation boardCreation) {
         final BoardEntity boardEntity = boardMapper.map(boardCreation);
         boardRepository.save(boardEntity);
+        return boardEntity;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void updateBoard(final long id, final BoardCreation boardCreation) {
+    public BoardEntity updateBoard(final long id, final BoardCreation boardCreation) {
         final Optional<BoardEntity> boardOptional = boardRepository.findById(id);
         if (boardOptional.isEmpty()) {
             log.error(GET_BOARD_BY_ID_ERROR);
@@ -67,5 +68,6 @@ public class BoardServiceImpl implements BoardService {
         boardEntity.setName(boardCreation.name());
         boardEntity.setDescription(boardCreation.description());
         boardRepository.save(boardEntity);
+        return boardEntity;
     }
 }

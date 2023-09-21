@@ -33,9 +33,8 @@ public class BoardController {
     }
 
     @PostMapping
-    public String addBoard(@Valid @RequestBody final BoardCreation boardCreation) {
-        boardService.addBoard(boardCreation);
-        return BOARD_ADDED_MSG;
+    public BoardEntity addBoard(@Valid @RequestBody final BoardCreation boardCreation) {
+        return boardService.addBoard(boardCreation);
     }
 
     @DeleteMapping("{id}")
@@ -45,8 +44,7 @@ public class BoardController {
     }
 
     @PutMapping("{id}")
-    public String updateBoard(@Valid @PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
-        boardService.updateBoard(id, boardCreation);
-        return BOARD_UPDATED_MSG;
+    public BoardEntity updateBoard(@Valid @PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
+        return boardService.updateBoard(id, boardCreation);
     }
 }

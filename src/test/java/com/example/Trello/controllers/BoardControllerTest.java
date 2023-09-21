@@ -55,29 +55,27 @@ class BoardControllerTest {
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_boardAdded() {
+    void should_returnBoard_when_boardAdded() {
         //given
-        willDoNothing().given(boardService).addBoard(BOARD_CREATION);
+        given(boardService.addBoard(BOARD_CREATION)).willReturn(BOARD_ENTITY);
 
         //when
-        String message = boardController.addBoard(BOARD_CREATION);
+        BoardEntity boardEntity = boardController.addBoard(BOARD_CREATION);
 
         //then
-        String expectedMessage = "Board has been added";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
     }
 
     @Test
-    void should_returnSuccessfulMessage_when_boardUpdated() {
+    void should_returnBoard_when_boardUpdated() {
         //given
-        willDoNothing().given(boardService).updateBoard(1, BOARD_CREATION);
+        given(boardService.updateBoard(1, BOARD_CREATION)).willReturn(BOARD_ENTITY);
 
         //when
-        String message = boardController.updateBoard(1, BOARD_CREATION);
+        BoardEntity boardEntity = boardController.updateBoard(1, BOARD_CREATION);
 
         //then
-        String expectedMessage = "Board has been updated";
-        assertThat(message).isEqualTo(expectedMessage);
+        assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
     }
 
     @Test
