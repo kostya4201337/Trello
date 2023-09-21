@@ -14,12 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CardController {
 
-    private static final String CARD_ADDED_MSG = "Card has been added";
-
-    private static final String CARD_UPDATED_MSG = "Card has been updated";
-
-    private static final String CARD_DELETED_MSG  = "Card has been deleted";
-
     private final CardService cardService;
 
     @PostMapping
@@ -38,9 +32,8 @@ public class CardController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteCard(@PathVariable final long id) {
+    public void deleteCard(@PathVariable final long id) {
         cardService.deleteCard(id);
-        return CARD_DELETED_MSG;
     }
 
     @PutMapping("{id}")

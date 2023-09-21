@@ -77,17 +77,4 @@ class BoardControllerTest {
         //then
         assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
     }
-
-    @Test
-    void should_returnSuccessfulMessage_when_boardDeleted() {
-        //given
-        willDoNothing().given(boardService).deleteBoard(1);
-
-        //when
-        String message = boardController.deleteBoard(1);
-
-        //then
-        String expectedMessage = "Board has been deleted";
-        assertThat(message).isEqualTo(expectedMessage);
-    }
 }

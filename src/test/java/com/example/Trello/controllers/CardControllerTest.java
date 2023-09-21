@@ -81,17 +81,4 @@ class CardControllerTest {
         //then
         assertThat(cardEntity).isEqualTo(CARD_ENTITY);
     }
-
-    @Test
-    void should_returnSuccessfulMessage_when_cardDeleted() {
-        //given
-        willDoNothing().given(cardService).deleteCard(1);
-
-        //when
-        String message = cardController.deleteCard(1);
-
-        //then
-        String expectedMessage = "Card has been deleted";
-        assertThat(message).isEqualTo(expectedMessage);
-    }
 }
