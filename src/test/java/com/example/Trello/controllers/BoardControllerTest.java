@@ -12,8 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BoardControllerTest {
@@ -76,5 +76,14 @@ class BoardControllerTest {
 
         //then
         assertThat(boardEntity).isEqualTo(BOARD_ENTITY);
+    }
+
+    @Test
+    void should_successfullyExecuteDeleteBoard() {
+        //when
+        boardController.deleteBoard(1);
+
+        //then
+        then(boardService).should().deleteBoard(1);
     }
 }

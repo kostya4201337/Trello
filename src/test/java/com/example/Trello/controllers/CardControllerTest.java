@@ -16,8 +16,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CardControllerTest {
@@ -80,5 +79,14 @@ class CardControllerTest {
 
         //then
         assertThat(cardEntity).isEqualTo(CARD_ENTITY);
+    }
+
+    @Test
+    void should_successfullyExecuteDeleteCard() {
+        //when
+        cardController.deleteCard(1);
+
+        //then
+        then(cardService).should().deleteCard(1);
     }
 }
