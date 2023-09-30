@@ -37,7 +37,7 @@ public class BoardController {
     }
 
     @PutMapping("{id}")
-    public BoardEntity updateBoard(@Valid @PathVariable final long id, @RequestBody final BoardCreation boardCreation) {
+    public BoardEntity updateBoard(@PathVariable final long id, @Valid @RequestBody final BoardCreation boardCreation) {
         return boardService.updateBoard(id, boardCreation);
     }
 }
