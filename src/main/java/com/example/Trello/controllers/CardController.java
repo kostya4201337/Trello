@@ -17,7 +17,7 @@ public class CardController {
     private final CardService cardService;
 
     @PostMapping
-    public CardEntity addCard(@Valid @PathVariable final long board_id, @RequestBody final CardCreation cardCreation){
+    public CardEntity addCard(@PathVariable final long board_id, @Valid @RequestBody final CardCreation cardCreation){
         return cardService.addCard(board_id, cardCreation);
     }
 
@@ -37,7 +37,7 @@ public class CardController {
     }
 
     @PutMapping("{id}")
-    public CardEntity updateCard(@Valid @PathVariable final long id, @RequestBody final CardCreation cardCreation) {
+    public CardEntity updateCard(@PathVariable final long id, @Valid @RequestBody final CardCreation cardCreation) {
         return cardService.updateCard(id, cardCreation);
     }
 }
