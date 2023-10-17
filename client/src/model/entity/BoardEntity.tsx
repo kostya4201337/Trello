@@ -1,4 +1,4 @@
-interface BoardEntity {
+export interface BoardEntity {
     id: bigint,
     name: string,
     description: string,
@@ -6,4 +6,3 @@ interface BoardEntity {
     updatedUp: Date
 }
 
-export {}

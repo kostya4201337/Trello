@@ -1,4 +1,4 @@
-interface CardEntity {
+export interface CardEntity {
     id: bigint,
     boardId: bigint,
     name: string,
@@ -7,4 +7,3 @@ interface CardEntity {
     updatedUp: Date
 }
 
-export {}
