@@ -1,8 +1,8 @@
 export interface BoardEntity {
-    id: bigint,
+    id: number,
     name: string,
     description: string,
     createdAt: Date,
-    updatedUp: Date
+    updatedAt: Date
 }
 

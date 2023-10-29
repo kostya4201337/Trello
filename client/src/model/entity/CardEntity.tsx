@@ -1,9 +1,9 @@
 export interface CardEntity {
-    id: bigint,
-    boardId: bigint,
+    id: number,
+    boardId: number,
     name: string,
     description: string,
     createdAt: Date,
-    updatedUp: Date
+    updatedAt: Date
 }
 

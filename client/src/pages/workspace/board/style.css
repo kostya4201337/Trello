@@ -1,0 +1,56 @@
+
+
+
+.board {
+    width: 300px;
+    background: white;
+    border-radius: 20px;
+    border-left: 10px #333333 solid;
+    border-top: 10px #333333 solid;
+}
+
+.addButton {
+    height: 40px;
+    width: 300px;
+}
+
+.boardTitle {
+    border: none;
+    background: none;
+    color: #302C2C;
+    font-family: Inter, sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.description {
+    border: none;
+    background: none;
+    width: 300px;
+    color: #302C2C;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.deleteButton {
+    width: 32px;
+    height: 27px;
+    border-radius: 20px;
+    border-left: 10px #333333 solid;
+    border-top: 10px #333333 solid;
+}
+.deleteButtonWrap {
+    text-align: end;
+    padding-right: 20px;
+}
+
+.invert {
+    color: white;
+}
+
+
