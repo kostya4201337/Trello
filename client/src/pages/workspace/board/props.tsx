@@ -1,10 +1,6 @@
-import {BoardEntity} from "../../../model/entity/BoardEntity";
+import {IBoardEntity} from "../../../model/entity/IBoardEntity";
 
 export type DeleteBoardProp = {
-    board: BoardEntity,
+    board: IBoardEntity,
     onDelete: (id: number) => void
-}
-
-export type AddBoardProp = {
-    onCreate: (board: BoardEntity) => void
 }

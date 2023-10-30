@@ -1,13 +1,8 @@
 import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import OutsideClickHandler from 'react-outside-click-handler';
 
-import "./mutableInput.style.css";
-
-interface MutableInputProps {
-    value: string;
-    valueSet: (value: string) => void;
-    placeHolder: string;
-}
+import "./MutableInput.style.css";
+import {MutableInputProps} from "./props";
 
 const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolder }) => {
     const currentField = useRef<HTMLTextAreaElement>(null);
@@ -20,7 +15,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
         }
     }, [edit]);
 
-    const auto_grow = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const autoGrow = (e: ChangeEvent<HTMLTextAreaElement>) => {
         e.target.style.height = 'auto';
         e.target.style.height = e.target.scrollHeight + "px";
     };
@@ -45,7 +40,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
                     <textarea
                         id="mi-textarea"
                         className={"mi-textarea"}
-                        onInput={auto_grow}
+                        onInput={autoGrow}
                         value={value}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}

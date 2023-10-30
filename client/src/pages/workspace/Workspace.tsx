@@ -1,16 +1,23 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Board from "./board/board";
-import {BoardEntity} from "../../model/entity/BoardEntity";
+import {IBoardEntity} from "../../model/entity/IBoardEntity";
 import {List, ListItem} from "@mui/material";
-import AddBoard from "./board/AddBoard";
+import AddBoard from "./board/addBoard/AddBoard";
+import {getBoardsService} from "../../services/board";
 
 const Workspace: React.FC = () => {
-    const [boards, setBoards] = useState<BoardEntity[]>([
-        {id: 1, name: 'white board', description: 'mega ultra super cool red board', createdAt: new Date(), updatedAt: new Date()},
-        {id: 2, name: 'board2', description: 'boardDesc2', createdAt: new Date(), updatedAt: new Date()}
-    ]);
+    const [boards, setBoards] = useState<IBoardEntity[]>([]);
 
-    const addBoard = (newBoard: BoardEntity) => {
+    useEffect(() => {
+        getBoards();
+    }, [])
+
+    const getBoards = () => {
+        const fetchedBoards: IBoardEntity[] = getBoardsService();
+        setBoards(fetchedBoards);
+    }
+
+    const addBoard = (newBoard: IBoardEntity) => {
         setBoards([...boards, newBoard]);
     }
 
@@ -20,7 +27,7 @@ const Workspace: React.FC = () => {
     }
 
     return (
-        <div style={{verticalAlign: 'middle'}}>
+        <div>
             <List style={{display: 'inline-flex'}}>
                     {boards.map((board) => (
                         <ListItem key={board.id}>

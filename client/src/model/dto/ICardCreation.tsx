@@ -1,4 +1,4 @@
-export interface CardCreation {
+export interface ICardCreation {
     name: string,
     description: string
 }

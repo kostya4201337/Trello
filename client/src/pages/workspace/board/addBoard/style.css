@@ -1,0 +1,13 @@
+.addButton {
+    height: 40px;
+    width: 200px;
+}
+
+.plus {
+    color: #302C2C;
+    font-family: Inter, sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

@@ -1,20 +1,13 @@
-
-
-
 .board {
     width: 300px;
     background: white;
     border-radius: 20px;
-    border-left: 10px #333333 solid;
-    border-top: 10px #333333 solid;
-}
-
-.addButton {
-    height: 40px;
-    width: 300px;
+    border-left: 10px #575757 solid;
+    border-top: 10px #575757 solid;
 }
 
 .boardTitle {
+    padding-top: 10px;
     border: none;
     background: none;
     color: #302C2C;
@@ -40,9 +33,6 @@
 .deleteButton {
     width: 32px;
     height: 27px;
-    border-radius: 20px;
-    border-left: 10px #333333 solid;
-    border-top: 10px #333333 solid;
 }
 .deleteButtonWrap {
     text-align: end;
@@ -52,5 +42,3 @@
 .invert {
     color: white;
 }
-
-

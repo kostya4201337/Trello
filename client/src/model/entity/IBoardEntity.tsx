@@ -1,6 +1,5 @@
-export interface CardEntity {
+export interface IBoardEntity {
     id: number,
-    boardId: number,
     name: string,
     description: string,
     createdAt: Date,
