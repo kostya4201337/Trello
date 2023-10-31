@@ -1,22 +1,16 @@
 import React, {useState} from 'react';
-import {IBoardEntity} from "../../../../model/entity/IBoardEntity";
-import {IBoardCreation} from "../../../../model/dto/IBoardCreation";
+import {IBoardCreation} from "../../../model/dto/IBoardCreation";
 import {AddBoardProp} from "./props";
 import Button from "@mui/material/Button";
 import "./style.css";
 import { TextField } from '@mui/material';
+import { addBoardService } from "../../../services/board";
 
-const AddBoard: React.FC<AddBoardProp> = ({onCreate}: AddBoardProp) => {
+const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     const [board, setBoard] = useState<IBoardCreation>({name: '', description: ''})
 
     const addNewBoard = () => {
-        const newBoard: IBoardEntity = {
-            id: Date.now(),
-            ...board,
-            createdAt: new Date(),
-            updatedAt: new Date()
-        }
-        onCreate(newBoard);
+        addBoard(addBoardService(board));
         setBoard({name: '', description: ''});
     }
 

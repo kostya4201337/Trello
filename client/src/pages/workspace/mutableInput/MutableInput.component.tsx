@@ -15,7 +15,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
         }
     }, [edit]);
 
-    const autoGrow = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const autoSizeGrow = (e: ChangeEvent<HTMLTextAreaElement>) => {
         e.target.style.height = 'auto';
         e.target.style.height = e.target.scrollHeight + "px";
     };
@@ -40,7 +40,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
                     <textarea
                         id="mi-textarea"
                         className={"mi-textarea"}
-                        onInput={autoGrow}
+                        onInput={autoSizeGrow}
                         value={value}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
