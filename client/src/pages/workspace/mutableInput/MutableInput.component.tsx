@@ -4,7 +4,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import "./MutableInput.style.css";
 import {MutableInputProps} from "./props";
 
-const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolder }) => {
+const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder }) => {
     const currentField = useRef<HTMLTextAreaElement>(null);
     const [edit, editSet] = useState<boolean>(false);
 
@@ -22,15 +22,15 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
 
     const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement> | "outside") => {
         if (e === "outside" || e.key === "Enter") {
-            if (value === "") {
-                valueSet(placeHolder);
+            if (text === "") {
+                textSet(placeHolder);
             }
             editSet(false);
         }
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        valueSet(e.target.value.trimStart());
+        textSet(e.target.value.trimStart());
     };
 
     return (
@@ -41,7 +41,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
                         id="mi-textarea"
                         className={"mi-textarea"}
                         onInput={autoSizeGrow}
-                        value={value}
+                        value={text}
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
                         ref={currentField}
@@ -49,7 +49,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ value, valueSet, placeHolde
                     />
                 ) : (
                     <div onClick={() => editSet(true)} id="mi-div">
-                        {value}
+                        {text}
                     </div>
                 )}
             </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IBoardCreation} from "../../../model/dto/IBoardCreation";
 import {AddBoardProp} from "./props";
 import Button from "@mui/material/Button";
@@ -8,10 +8,23 @@ import { addBoardService } from "../../../services/board";
 
 const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     const [board, setBoard] = useState<IBoardCreation>({name: '', description: ''})
+    const [isValid, setIsValid] = useState<boolean>(false)
+
+    useEffect(() => {
+        validateBoard(board);
+    }, [board]);
 
     const addNewBoard = () => {
         addBoard(addBoardService(board));
         setBoard({name: '', description: ''});
+    }
+
+    const validateBoard = (board: IBoardCreation) => {
+        if (board.name !== "" && board.description !== "") {
+            setIsValid(true)
+        } else {
+            setIsValid(false)
+        }
     }
 
     return (
@@ -61,7 +74,9 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                         borderLeft: "2px #575757 solid",
                         borderTop: "2px #575757 solid",
                     }}
-                    className={"addButton"} variant="contained" onClick={addNewBoard}>
+                    className={"addButton"} variant="contained" onClick={addNewBoard}
+                    disabled={!isValid}
+                >
                     <p className={"plus"}>+</p>
                 </Button>
             </div>

@@ -3,7 +3,7 @@ import Board from "./board/board";
 import {IBoardEntity} from "../../model/entity/IBoardEntity";
 import {List, ListItem} from "@mui/material";
 import AddBoard from "./addBoard/AddBoard";
-import {addBoardService, getBoardsService} from "../../services/board";
+import {addBoardService, deleteBoardService, getBoardsService} from "../../services/board";
 import {IBoardCreation} from "../../model/dto/IBoardCreation";
 
 const Workspace: React.FC = () => {
@@ -24,6 +24,7 @@ const Workspace: React.FC = () => {
     }
 
     const deleteBoard = (id: number) => {
+        deleteBoardService(id);
         setBoards(boards.filter(board => board.id !== id));
     }
 

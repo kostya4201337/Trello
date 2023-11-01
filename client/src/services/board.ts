@@ -11,3 +11,7 @@ export const getBoardsService = (): IBoardEntity[] => {
 export const addBoardService = (newBoard: IBoardCreation): IBoardEntity => {
     return {id: Date.now(), name: newBoard.name, description: newBoard.description, createdAt: new Date(), updatedAt: new Date()};
 }
+
+export const deleteBoardService = (id: number): void => {
+
+};
