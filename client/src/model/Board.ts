@@ -1,9 +1,12 @@
-export interface ICardEntity {
+export interface IBoard {
     id: number,
-    boardId: number,
     name: string,
     description: string,
     createdAt: Date,
     updatedAt: Date
 }
 
+export interface IBoardCreation {
+    name: string
+    description: string
+}

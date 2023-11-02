@@ -1,19 +1,23 @@
 import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import OutsideClickHandler from 'react-outside-click-handler';
 
-import "./MutableInput.style.css";
+import "./styles.css";
 import {MutableInputProps} from "./props";
 
-const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder }) => {
+const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder, className }) => {
     const currentField = useRef<HTMLTextAreaElement>(null);
-    const [edit, editSet] = useState<boolean>(false);
+    const [edit, setEdit] = useState<boolean>(false);
 
     useEffect(() => {
         if (edit) {
-            currentField.current?.select();
-            currentField.current!.style.height = currentField.current?.scrollHeight + "px";
+            selectField();
         }
     }, [edit]);
+
+    const selectField = () => {
+        currentField.current?.select();
+        currentField.current!.style.height = currentField.current?.scrollHeight + "px";
+    }
 
     const autoSizeGrow = (e: ChangeEvent<HTMLTextAreaElement>) => {
         e.target.style.height = 'auto';
@@ -25,7 +29,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder 
             if (text === "") {
                 textSet(placeHolder);
             }
-            editSet(false);
+            setEdit(false);
         }
     };
 
@@ -35,20 +39,20 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder 
 
     return (
         <OutsideClickHandler onOutsideClick={() => handleKeyPress("outside")}>
-            <div id="mi" className={"mi-div"}>
+            <div id="mi" className={"mi-div " + className}>
                 {edit ? (
                     <textarea
                         id="mi-textarea"
-                        className={"mi-textarea"}
+                        className={"mi-textarea " + className}
                         onInput={autoSizeGrow}
                         value={text}
                         onChange={handleInputChange}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyPress}
                         ref={currentField}
                         rows={1}
                     />
                 ) : (
-                    <div onClick={() => editSet(true)} id="mi-div">
+                    <div onClick={() => setEdit(true)} id="mi-div">
                         {text}
                     </div>
                 )}

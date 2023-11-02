@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {IBoardCreation} from "../../../model/dto/IBoardCreation";
+import {IBoardCreation} from "../../../model/Board";
 import {AddBoardProp} from "./props";
 import Button from "@mui/material/Button";
-import "./style.css";
+import "./styles.css";
 import { TextField } from '@mui/material';
-import { addBoardService } from "../../../services/board";
 
 const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     const [board, setBoard] = useState<IBoardCreation>({name: '', description: ''})
@@ -15,7 +14,7 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     }, [board]);
 
     const addNewBoard = () => {
-        addBoard(addBoardService(board));
+        addBoard(board);
         setBoard({name: '', description: ''});
     }
 
@@ -30,16 +29,13 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     return (
         <div className={"board"}>
             <TextField
-                style={{
-                    marginLeft: 20,
-                    marginTop: 10,
-                    width: 260,
-                }}
                 inputProps={{
                     style: {
-                        padding: 7
+                        padding: "0.4em"
                     }
                 }}
+                className={"textField"}
+                margin="dense"
                 variant="outlined"
                 label="Name"
                 value={board.name}
@@ -48,16 +44,13 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                 fullWidth
             />
             <TextField
-                style={{
-                    marginLeft: 20,
-                    marginTop: 10,
-                    width: 260,
-                }}
                 inputProps={{
                     style: {
-                        padding: 7,
+                        padding: "0.4em"
                     }
                 }}
+                className={"textField"}
+                margin="dense"
                 variant="outlined"
                 label="Description"
                 value={board.description}
@@ -65,16 +58,11 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                 type="text"
                 fullWidth
             />
-            <div style={{paddingLeft: 50, paddingTop: 10, paddingBottom: 10}}>
+            <div className={"plusButtonWrap"}>
                 <Button
-                    style={{
-                        borderRadius: 20,
-                        backgroundColor: "#ffffff",
-                        fontSize: "18px",
-                        borderLeft: "2px #575757 solid",
-                        borderTop: "2px #575757 solid",
-                    }}
-                    className={"addButton"} variant="contained" onClick={addNewBoard}
+                    className={"addButton"}
+                    variant="contained"
+                    onClick={addNewBoard}
                     disabled={!isValid}
                 >
                     <p className={"plus"}>+</p>

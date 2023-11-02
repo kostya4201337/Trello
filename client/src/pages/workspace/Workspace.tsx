@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import Board from "./board/board";
-import {IBoardEntity} from "../../model/entity/IBoardEntity";
-import {List, ListItem} from "@mui/material";
+import Board from "./board/Board";
+import {IBoard, IBoardCreation} from "../../model/Board";
+import Box from '@mui/material/Box';
 import AddBoard from "./addBoard/AddBoard";
+import "./styles.css";
 import {addBoardService, deleteBoardService, getBoardsService} from "../../services/board";
-import {IBoardCreation} from "../../model/dto/IBoardCreation";
 
 const Workspace: React.FC = () => {
-    const [boards, setBoards] = useState<IBoardEntity[]>([]);
+    const [boards, setBoards] = useState<IBoard[]>([]);
 
     useEffect(() => {
         getBoards();
@@ -29,18 +29,12 @@ const Workspace: React.FC = () => {
     }
 
     return (
-        <div>
-            <List style={{display: 'inline-flex'}}>
-                    {boards.map((board) => (
-                        <ListItem key={board.id}>
-                            <Board board={board} deleteBoard={deleteBoard}/>
-                        </ListItem>
-                    ))}
-                <ListItem>
-                    <AddBoard addBoard={addBoard}/>
-                </ListItem>
-            </List>
-        </div>
+        <Box className={"boardList"} sx={{ alignItems: 'flex-start'}}>
+            {boards.map((board) => (
+                <Board board={board} deleteBoard={deleteBoard}/>
+            ))}
+            <AddBoard addBoard={addBoard}/>
+        </Box>
     );
 }
 

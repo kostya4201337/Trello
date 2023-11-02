@@ -1,6 +1,6 @@
-import {IBoardEntity} from "../../../model/entity/IBoardEntity";
+import {IBoard} from "../../../model/Board";
 
 export type DeleteBoardProp = {
-    board: IBoardEntity,
+    board: IBoard,
     deleteBoard: (id: number) => void
 }

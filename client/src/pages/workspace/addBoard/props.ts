@@ -1,6 +1,6 @@
-import {IBoardEntity} from "../../../model/entity/IBoardEntity";
+import {IBoardCreation} from "../../../model/Board";
 
 export type AddBoardProp = {
-    addBoard: (board: IBoardEntity) => void
+    addBoard: (board: IBoardCreation) => void
 }
 
