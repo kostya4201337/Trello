@@ -10,6 +10,10 @@
     margin-bottom: 0.8rem !important;
 }
 
+.textFieldInputStyle {
+    padding: 0.4em !important;
+}
+
 .plus {
     color: #302C2C;
     font-family: Inter, sans-serif;

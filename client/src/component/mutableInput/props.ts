@@ -1,6 +1,6 @@
 export type MutableInputProps = {
     text: string;
-    textSet: (value: string) => void;
+    setText: (value: string) => void;
     placeHolder: string;
     className: string
 }

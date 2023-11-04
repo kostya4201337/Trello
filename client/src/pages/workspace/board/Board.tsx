@@ -11,8 +11,8 @@ const Board: React.FC<DeleteBoardProp> = ({board, deleteBoard}: DeleteBoardProp)
 
     return (
         <div className={"board"}>
-            <MutableInput className={"boardTitle"} text={name} placeHolder="" textSet={setName}/>
-            <MutableInput className={"description"} text={description} placeHolder="" textSet={setDescription}/>
+            <MutableInput className={"boardTitle"} text={name} placeHolder="" setText={setName}/>
+            <MutableInput className={"description"} text={description} placeHolder="" setText={setDescription}/>
             <p className={"deleteButtonWrap"}>
                 <IconButton className={"deleteButton"} aria-label="delete" onClick={() => deleteBoard(board.id)}>
                     <DeleteForeverIcon className={"invert"}/>

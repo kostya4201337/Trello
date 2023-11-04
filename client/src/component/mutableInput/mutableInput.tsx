@@ -4,7 +4,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import "./styles.css";
 import {MutableInputProps} from "./props";
 
-const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder, className }) => {
+const MutableInput: React.FC<MutableInputProps> = ({ text, setText, placeHolder, className }) => {
     const currentField = useRef<HTMLTextAreaElement>(null);
     const [edit, setEdit] = useState<boolean>(false);
 
@@ -27,14 +27,14 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder,
     const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement> | "outside") => {
         if (e === "outside" || e.key === "Enter") {
             if (text === "") {
-                textSet(placeHolder);
+                setText(placeHolder);
             }
             setEdit(false);
         }
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        textSet(e.target.value.trimStart());
+        setText(e.target.value.trimStart());
     };
 
     return (

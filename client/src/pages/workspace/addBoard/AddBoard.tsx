@@ -26,16 +26,10 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
         }
     }
 
-    const textFieldInputStyle = {
-        padding: "0.4em"
-    };
-
     return (
         <div className={"board"}>
             <TextField
-                inputProps={{
-                    style: textFieldInputStyle
-                }}
+                inputProps={{className: "textFieldInputStyle"}}
                 className={"textField"}
                 margin="dense"
                 variant="outlined"
@@ -46,9 +40,7 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                 fullWidth
             />
             <TextField
-                inputProps={{
-                    style: textFieldInputStyle
-                }}
+                inputProps={{className: "textFieldInputStyle"}}
                 className={"textField"}
                 margin="dense"
                 variant="outlined"
