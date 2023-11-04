@@ -1,11 +1,11 @@
 import React from 'react';
+import Workspace from "../src/pages/workspace/Workspace"
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      Trello
-    </div>
+      <Workspace/>
   );
 }
 
 export default App;
+

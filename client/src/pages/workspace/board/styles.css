@@ -1,0 +1,25 @@
+.board {
+    width: 18.6rem;
+    background: white;
+    border-radius: 1.5rem;
+    border-left: 0.65rem #575757 solid;
+    border-top: 0.65rem #575757 solid;
+    margin-left: 1.5em;
+}
+
+.deleteButton {
+    width: 1.8rem;
+    height: 1.6rem;
+    background-color: #302C2C !important;
+    border-left: 0.1rem #575757 solid !important;
+    border-top: 0.1rem #575757 solid !important;
+    border-radius: 0.7rem !important;
+}
+.deleteButtonWrap {
+    text-align: end;
+    padding-right: 1.3rem;
+}
+
+.invert {
+    color: white;
+}
