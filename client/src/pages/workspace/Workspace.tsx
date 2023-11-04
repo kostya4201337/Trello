@@ -4,6 +4,7 @@ import {IBoard, IBoardCreation} from "../../model/Board";
 import Box from '@mui/material/Box';
 import AddBoard from "./addBoard/AddBoard";
 import "./styles.css";
+import {boxSx} from "./styles";
 import {addBoardService, deleteBoardService, getBoardsService} from "../../services/board";
 
 const Workspace: React.FC = () => {
@@ -29,9 +30,9 @@ const Workspace: React.FC = () => {
     }
 
     return (
-        <Box className={"boardList"} sx={{ alignItems: 'flex-start'}}>
+        <Box className={"boardList"} sx={boxSx}>
             {boards.map((board) => (
-                <Board board={board} deleteBoard={deleteBoard}/>
+                <Board key={board.id} board={board} deleteBoard={deleteBoard}/>
             ))}
             <AddBoard addBoard={addBoard}/>
         </Box>

@@ -9,14 +9,14 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder,
     const [edit, setEdit] = useState<boolean>(false);
 
     useEffect(() => {
-        if (edit) {
-            selectField();
-        }
+        selectField();
     }, [edit]);
 
     const selectField = () => {
-        currentField.current?.select();
-        currentField.current!.style.height = currentField.current?.scrollHeight + "px";
+        if (edit) {
+            currentField.current?.select();
+            currentField.current!.style.height = currentField.current?.scrollHeight + "px";
+        }
     }
 
     const autoSizeGrow = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -39,11 +39,10 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder,
 
     return (
         <OutsideClickHandler onOutsideClick={() => handleKeyPress("outside")}>
-            <div id="mi" className={"mi-div " + className}>
+            <div className={"miDiv " + className}>
                 {edit ? (
                     <textarea
-                        id="mi-textarea"
-                        className={"mi-textarea " + className}
+                        className={"miTextarea " + className}
                         onInput={autoSizeGrow}
                         value={text}
                         onChange={handleInputChange}
@@ -52,7 +51,7 @@ const MutableInput: React.FC<MutableInputProps> = ({ text, textSet, placeHolder,
                         rows={1}
                     />
                 ) : (
-                    <div onClick={() => setEdit(true)} id="mi-div">
+                    <div onClick={() => setEdit(true)}>
                         {text}
                     </div>
                 )}

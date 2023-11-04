@@ -1,4 +1,4 @@
-.mi-textarea {
+.miTextarea {
   font-family: Arial, Helvetica, sans-serif;
   color: #302C2C;
   width: 16rem;
@@ -11,7 +11,7 @@
   font-size: 1rem;
 }
 
-.mi-div {
+.miDiv {
   font-family: Arial, Helvetica, sans-serif;
   color: #302C2C;
   width: 16rem;

@@ -26,13 +26,15 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
         }
     }
 
+    const textFieldInputStyle = {
+        padding: "0.4em"
+    };
+
     return (
         <div className={"board"}>
             <TextField
                 inputProps={{
-                    style: {
-                        padding: "0.4em"
-                    }
+                    style: textFieldInputStyle
                 }}
                 className={"textField"}
                 margin="dense"
@@ -45,9 +47,7 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
             />
             <TextField
                 inputProps={{
-                    style: {
-                        padding: "0.4em"
-                    }
+                    style: textFieldInputStyle
                 }}
                 className={"textField"}
                 margin="dense"
@@ -58,16 +58,14 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                 type="text"
                 fullWidth
             />
-            <div className={"plusButtonWrap"}>
-                <Button
-                    className={"addButton"}
-                    variant="contained"
-                    onClick={addNewBoard}
-                    disabled={!isValid}
-                >
-                    <p className={"plus"}>+</p>
-                </Button>
-            </div>
+            <Button
+                className={"addButton"}
+                variant="contained"
+                onClick={addNewBoard}
+                disabled={!isValid}
+            >
+                <p className={"plus"}>+</p>
+            </Button>
         </div>
     );
 };
