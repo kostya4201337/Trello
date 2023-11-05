@@ -1,0 +1,47 @@
+.card {
+    width: 18.6rem;
+    background: #ffffff;
+    border-top: 0.2rem #575757 solid;
+}
+
+.cardDeleteButton {
+    width: 1.44rem;
+    height: 1.28rem;
+    background-color: #302C2C !important;
+    border-left: 0.1rem #575757 solid !important;
+    border-top: 0.1rem #575757 solid !important;
+    border-radius: 0.7rem !important;
+    margin-top: 0.7rem !important;
+}
+
+.cardInvert {
+    color: white;
+    width: 1rem !important;
+}
+
+.inline {
+    display: flex;
+    color: #302C2C;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cardBottomInfo {
+    padding-top: 2rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+
+.taskId {
+    padding-left: 1.3rem;
+    font-size: 0.7rem;
+}
+
+.date {
+    display: flex;
+    font-size: 0.7rem;
+    align-self: end;
+    padding-right: 1.2rem;
+}
