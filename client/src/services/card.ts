@@ -8,8 +8,8 @@ export const getCardsService = (boardId: number): ICard[] => {
     ];
 };
 
-export const addCardService = (boardId: number, newBoard: ICardCreation): ICard => {
-    return {id: Date.now(), boardId: boardId, name: newBoard.name, description: newBoard.description, createdAt: new Date(), updatedAt: new Date()};
+export const addCardService = (boardId: number, newCard: ICardCreation): ICard => {
+    return {id: Date.now(), boardId: boardId, name: newCard.name, description: newCard.description, createdAt: new Date(), updatedAt: new Date()};
 }
 
 export const deleteCardService = (id: number): void => {

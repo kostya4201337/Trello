@@ -14,7 +14,7 @@ const AddCard: React.FC<AddCardProp> = ({boardId, addCard}: AddCardProp) => {
     }, [card, boardId]);
 
     const validateCard = (card: ICardCreation) => {
-        if (boardId >= 0 && card.name !== "" && card.description !== "") {
+        if (card.name !== "" && card.description !== "") {
             setIsValid(true)
         } else {
             setIsValid(false)
