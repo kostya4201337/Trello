@@ -1,13 +1,36 @@
-import React, {useState} from "react";
-import {IconButton} from '@mui/material';
-import {DeleteBoardProp} from "./props";
+import React, {useEffect, useState} from "react";
+import {IconButton, List, ListItem} from '@mui/material';
+import {BoardProps} from "./props";
 import "./styles.css";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import MutableInput from '../../../component/mutableInput/mutableInput';
+import MutableInput from '../../../component/mutableInput/MutableInput';
+import Card from "./card/Card";
+import {ICard, ICardCreation} from "../../../model/Card";
+import {addCardService, deleteCardService, getCardsService} from "../../../services/card";
+import AddCard from "./addCard/AddCard";
 
-const Board: React.FC<DeleteBoardProp> = ({board, deleteBoard}: DeleteBoardProp) => {
+const Board: React.FC<BoardProps> = ({board, deleteBoard}: BoardProps) => {
     const [description, setDescription] = useState(board.description);
     const [name, setName] = useState(board.name);
+    const [cards, setCards] = useState<ICard[]>([]);
+
+    useEffect(() => {
+        getCards(board.id);
+    }, [])
+
+    const getCards = (boardId: number) => {
+        const fetchedCards = getCardsService(boardId);
+        setCards(fetchedCards.filter(card => card.boardId === boardId))    }
+
+    const addCard = (boardId: number, newCard: ICardCreation) => {
+        const addedCard = addCardService(boardId, newCard);
+        setCards([...cards, addedCard])
+    }
+
+    const deleteCard = (id: number) => {
+        deleteCardService(id);
+        setCards(cards.filter(card => card.id !== id));
+    }
 
     return (
         <div className={"board"}>
@@ -18,6 +41,14 @@ const Board: React.FC<DeleteBoardProp> = ({board, deleteBoard}: DeleteBoardProp)
                     <DeleteForeverIcon className={"invert"}/>
                 </IconButton>
             </p>
+            <List className={"cardsList"}>
+                {cards.map((card) => (
+                    <ListItem className={"cardListItem"} key={card.id}>
+                        <Card card={card} deleteCard={deleteCard}/>
+                    </ListItem>
+                ))}
+            </List>
+            <AddCard boardId={board.id} addCard={addCard}/>
         </div>
     );
 };

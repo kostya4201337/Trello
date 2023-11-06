@@ -1,0 +1,7 @@
+.addCard {
+    width: 18.6rem;
+    background: white;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top: 0.2rem #575757 solid;
+}

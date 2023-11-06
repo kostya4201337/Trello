@@ -7,7 +7,6 @@
   border-radius: 0.5rem;
   resize: none;
   overflow: hidden;
-  min-height: 1rem;
   font-size: 1rem;
 }
 
@@ -20,6 +19,19 @@
   padding: 0 0 0.5rem 1.3rem;
   margin-bottom: 0;
   overflow-wrap: break-word;
+}
+
+.cardTitle {
+  padding-top: 0.6rem;
+  border: none;
+  background: none;
+  color: #302C2C;
+  font-family: Inter, sans-serif;
+  font-size: 1.7rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: 14.5rem;
 }
 
 .boardTitle {

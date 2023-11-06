@@ -8,8 +8,8 @@
 }
 
 .deleteButton {
-    width: 1.8rem;
-    height: 1.6rem;
+    width: 2rem;
+    height: 1.8rem;
     background-color: #302C2C !important;
     border-left: 0.1rem #575757 solid !important;
     border-top: 0.1rem #575757 solid !important;
@@ -22,4 +22,13 @@
 
 .invert {
     color: white;
+}
+
+.cardListItem {
+    padding: 0 !important;
+}
+
+.cardsList {
+    max-height: 25rem !important;
+    overflow: auto;
 }
