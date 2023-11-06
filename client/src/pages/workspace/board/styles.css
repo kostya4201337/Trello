@@ -27,3 +27,8 @@
 .cardListItem {
     padding: 0 !important;
 }
+
+.cardsList {
+    max-height: 25rem !important;
+    overflow: auto;
+}

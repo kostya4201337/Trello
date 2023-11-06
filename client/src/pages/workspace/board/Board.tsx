@@ -41,14 +41,14 @@ const Board: React.FC<BoardProps> = ({board, deleteBoard}: BoardProps) => {
                     <DeleteForeverIcon className={"invert"}/>
                 </IconButton>
             </p>
-            <List>
+            <List className={"cardsList"}>
                 {cards.map((card) => (
                     <ListItem className={"cardListItem"} key={card.id}>
                         <Card card={card} deleteCard={deleteCard}/>
                     </ListItem>
                 ))}
-                <AddCard boardId={board.id} addCard={addCard}/>
             </List>
+            <AddCard boardId={board.id} addCard={addCard}/>
         </div>
     );
 };
