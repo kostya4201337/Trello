@@ -22,7 +22,7 @@ const AddCard: React.FC<AddCardProp> = ({boardId, addCard}: AddCardProp) => {
     }
 
     const addNewCard = () => {
-        addCard(boardId, card);
+        addCard(card);
         clearCard();
     }
 
