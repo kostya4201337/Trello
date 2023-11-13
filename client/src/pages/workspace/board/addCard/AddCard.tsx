@@ -34,7 +34,7 @@ const AddCard: React.FC<AddCardProp> = ({boardId, addCard}: AddCardProp) => {
         <div className={"addCard"}>
             <TextField
                 inputProps={{className: "textFieldInputStyle"}}
-                className={"textField"}
+                className="textField"
                 margin="dense"
                 variant="outlined"
                 label="Name"
@@ -45,7 +45,7 @@ const AddCard: React.FC<AddCardProp> = ({boardId, addCard}: AddCardProp) => {
             />
             <TextField
                 inputProps={{className: "textFieldInputStyle"}}
-                className={"textField"}
+                className="textField"
                 margin="dense"
                 variant="outlined"
                 label="Description"
@@ -55,12 +55,12 @@ const AddCard: React.FC<AddCardProp> = ({boardId, addCard}: AddCardProp) => {
                 fullWidth
             />
             <Button
-                className={"addButton"}
+                className="addButton"
                 variant="contained"
                 onClick={addNewCard}
                 disabled={!isValid}
             >
-                <p className={"plus"}>+</p>
+                <p className="plus">+</p>
             </Button>
         </div>
     );

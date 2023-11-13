@@ -46,7 +46,7 @@ const Workspace: React.FC = () => {
     }
 
     return (
-        <Box className={"boardList"} sx={boxSx}>
+        <Box className="boardList" sx={boxSx}>
             {boards.map((board) => (
                 <Board key={board.id} board={board} deleteBoard={deleteBoard} updateName={updateBoardName} updateDescription={updateBoardDescription}/>
             ))}

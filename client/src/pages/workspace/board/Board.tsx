@@ -57,17 +57,17 @@ const Board: React.FC<BoardProps> = ({board, deleteBoard, updateName, updateDesc
     }
 
     return (
-        <div className={"board"}>
-            <MutableInput className={"boardTitle"} text={name} placeHolder="" setText={setName} onChange={(name) => updateName(board, name)}/>
-            <MutableInput className={"description"} text={description} placeHolder="" setText={setDescription} onChange={(description) => updateDescription(board, description)}/>
-            <p className={"deleteButtonWrap"}>
-                <IconButton className={"deleteButton"} aria-label="delete" onClick={() => deleteBoard(board.id)}>
-                    <DeleteForeverIcon className={"invert"}/>
+        <div className="board">
+            <MutableInput className="boardTitle" text={name} placeHolder="" setText={setName} onChange={(name) => updateName(board, name)}/>
+            <MutableInput className="description" text={description} placeHolder="" setText={setDescription} onChange={(description) => updateDescription(board, description)}/>
+            <p className="deleteButtonWrap">
+                <IconButton className="deleteButton" aria-label="delete" onClick={() => deleteBoard(board.id)}>
+                    <DeleteForeverIcon className="invert"/>
                 </IconButton>
             </p>
-            <List className={"cardsList"}>
+            <List className="cardsList">
                 {cards.map((card) => (
-                    <ListItem className={"cardListItem"} key={card.id}>
+                    <ListItem className="cardListItem" key={card.id}>
                         <Card card={card} deleteCard={deleteCard} updateName={updateCardName} updateDescription={updateCardDescription}/>
                     </ListItem>
                 ))}

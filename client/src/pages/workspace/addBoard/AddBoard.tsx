@@ -27,10 +27,10 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
     }
 
     return (
-        <div className={"board"}>
+        <div className="board">
             <TextField
                 inputProps={{className: "textFieldInputStyle"}}
-                className={"textField"}
+                className="textField"
                 margin="dense"
                 variant="outlined"
                 label="Name"
@@ -41,7 +41,7 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
             />
             <TextField
                 inputProps={{className: "textFieldInputStyle"}}
-                className={"textField"}
+                className="textField"
                 margin="dense"
                 variant="outlined"
                 label="Description"
@@ -51,12 +51,12 @@ const AddBoard: React.FC<AddBoardProp> = ({addBoard}: AddBoardProp) => {
                 fullWidth
             />
             <Button
-                className={"addButton"}
+                className="addButton"
                 variant="contained"
                 onClick={addNewBoard}
                 disabled={!isValid}
             >
-                <p className={"plus"}>+</p>
+                <p className="plus">+</p>
             </Button>
         </div>
     );
