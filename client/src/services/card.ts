@@ -1,17 +1,24 @@
 import {ICard, ICardCreation} from "../model/Card";
+import httpClient from "./httpClient";
+import _ from "lodash";
 
-export const getCardsService = (boardId: number): ICard[] => {
-    return [
-        {id: 1, boardId: 1, name: 'card1', description: 'desc1', createdAt: new Date(), updatedAt: new Date()},
-        {id: 2, boardId: 1, name: 'card2', description: 'desc2', createdAt: new Date(), updatedAt: new Date()},
-        {id: 3, boardId: 2, name: 'card3', description: 'desc3', createdAt: new Date(), updatedAt: new Date()}
-    ];
-};
+const URL = "boards";
 
-export const addCardService = (boardId: number, newCard: ICardCreation): ICard => {
-    return {id: Date.now(), boardId: boardId, name: newCard.name, description: newCard.description, createdAt: new Date(), updatedAt: new Date()};
+export const getCardsByBoardIdService = async (boardId: number): Promise<ICard[]> => {
+    const response = await httpClient.get<ICard[]>(`${URL}/${boardId}/cards`);
+    return _.get(response, "data", []);
 }
 
-export const deleteCardService = (id: number): void => {
+export const addCardService = async (boardId: number, newCard: ICardCreation): Promise<ICard | null> => {
+    const response = await httpClient.post<ICard>(`${URL}/${boardId}/cards`, newCard);
+    return _.get(response, "data", null);
+}
 
-};
+export const updateCardService = async (boardId: number, id: number, updateCard: ICardCreation): Promise<ICard | null> => {
+    const response = await httpClient.put<ICard>(`${URL}/${boardId}/cards/${id}`, updateCard);
+    return _.get(response, "data", null);
+}
+
+export const deleteCardService = async (boardId: number, id: number): Promise<void> => {
+    await httpClient.delete(`${URL}/${boardId}/cards/${id}`);
+}

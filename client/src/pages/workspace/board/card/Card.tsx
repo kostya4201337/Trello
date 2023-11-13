@@ -6,7 +6,7 @@ import {IconButton} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {ICard} from "../../../../model/Card";
 
-const Card: React.FC<CardProps> = ({card, deleteCard}: CardProps) => {
+const Card: React.FC<CardProps> = ({card, deleteCard, updateName, updateDescription}: CardProps) => {
     const [description, setDescription] = useState(card.description);
     const [name, setName] = useState(card.name);
 
@@ -26,17 +26,17 @@ const Card: React.FC<CardProps> = ({card, deleteCard}: CardProps) => {
     }
 
     return (
-        <div className={"card"}>
-            <div className={"inline"}>
-                <MutableInput className={"cardTitle"} text={name} placeHolder="" setText={setName}/>
-                <IconButton className={"cardDeleteButton"} aria-label="delete" onClick={() => deleteCard(card.id)}>
-                    <DeleteForeverIcon className={"cardInvert"}/>
+        <div className="card">
+            <div className="inline">
+                <MutableInput className="cardTitle" text={name} placeHolder="" setText={setName} onChange={(name: string) => updateName(card, name)}/>
+                <IconButton className="cardDeleteButton" aria-label="delete" onClick={() => deleteCard(card.id)}>
+                    <DeleteForeverIcon className="cardInvert"/>
                 </IconButton>
             </div>
-            <MutableInput className={"description"} text={description} placeHolder="" setText={setDescription}/>
-            <div className={"inline cardBottomInfo"}>
-                <div className={"taskId"}>TSK-{card.id}</div>
-                <div className={"date"}>{date}</div>
+            <MutableInput className="description" text={description} placeHolder="" setText={setDescription} onChange={(description: string) => updateDescription(card, description)}/>
+            <div className="inline cardBottomInfo">
+                <div className="taskId">TSK-{card.id}</div>
+                <div className="date">{date}</div>
             </div>
         </div>
     );

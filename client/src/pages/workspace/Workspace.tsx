@@ -5,34 +5,50 @@ import Box from '@mui/material/Box';
 import AddBoard from "./addBoard/AddBoard";
 import "./styles.css";
 import {boxSx} from "./styles";
-import {addBoardService, deleteBoardService, getBoardsService} from "../../services/board";
+import {addBoardService, deleteBoardService, getBoardsService, updateBoardService} from "../../services/board";
 
 const Workspace: React.FC = () => {
     const [boards, setBoards] = useState<IBoard[]>([]);
 
     useEffect(() => {
-        getBoards();
+        getBoards().then();
     }, [])
 
-    const getBoards = () => {
-        const fetchedBoards = getBoardsService();
+    const getBoards = async () => {
+        const fetchedBoards = await getBoardsService();
         setBoards(fetchedBoards);
     }
 
-    const addBoard = (newBoard: IBoardCreation) => {
-        const addedBoard = addBoardService(newBoard);
-        setBoards([...boards, addedBoard])
+    const addBoard = async (newBoard: IBoardCreation) => {
+        const addedBoard = await addBoardService(newBoard);
+        if (addedBoard !== null) {
+            setBoards([...boards, addedBoard]);
+        }
     }
 
-    const deleteBoard = (id: number) => {
-        deleteBoardService(id);
-        setBoards(boards.filter(board => board.id !== id));
+    const deleteBoard = async (id: number) => {
+        await deleteBoardService(id);
+        await getBoards();
+    }
+
+    const updateBoardName = async (board: IBoard, text: string) => {
+        await updateBoardService(
+            board.id,
+            {name: text, description: board.description}
+        );
+    }
+
+    const updateBoardDescription = async (board: IBoard, text: string) => {
+        await updateBoardService(
+            board.id,
+            {name: board.name, description: text}
+        );
     }
 
     return (
-        <Box className={"boardList"} sx={boxSx}>
+        <Box className="boardList" sx={boxSx}>
             {boards.map((board) => (
-                <Board key={board.id} board={board} deleteBoard={deleteBoard}/>
+                <Board key={board.id} board={board} deleteBoard={deleteBoard} updateName={updateBoardName} updateDescription={updateBoardDescription}/>
             ))}
             <AddBoard addBoard={addBoard}/>
         </Box>
